@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Warming Ceremony - Haris & Shameela</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@500;600;700;800&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FCF9F2',
+                        creamDark: '#F4ECE0',
+                        maroon: '#6A1B29',
+                        maroonDark: '#4A101A',
+                        gold: '#D4AF37',
+                        goldLight: '#F3E5AB',
+                        goldDark: '#AA820A',
+                    },
+                    fontFamily: {
+                        arabic: ['Amiri', 'serif'],
+                        heading: ['Cinzel', 'serif'],
+                        cursive: ['Great Vibes', 'cursive'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Decorative Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FCF9F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6A1B29;
+            border-radius: 4px;
+        }
+        
+        /* Glassmorphism & Borders */
+        .royal-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid #D4AF37;
+            box-shadow: 0 15px 35px rgba(106, 27, 41, 0.12);
+        }
+
+        .gold-border-corner {
+            position: relative;
+        }
+        .gold-border-corner::before, .gold-border-corner::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #D4AF37;
+        }
+        .gold-border-corner::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+        .gold-border-corner::after { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+        /* Floating elements animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+        }
+        .pulse-gold-btn {
+            animation: pulse-gold 2.5s infinite;
+        }
+
+        /* Pattern background */
+        .bg-pattern {
+            background-color: #FCF9F2;
+            background-image: radial-gradient(#d4af37 0.75px, transparent 0.75px), radial-gradient(#6a1b29 0.75px, #FCF9F2 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            background-opacity: 0.05;
+        }
+    </style>
+</head>
+<body class="bg-cream text-gray-800 font-sans min-h-screen relative overflow-x-hidden bg-pattern selection:bg-gold selection:text-maroon">
+
+    <!-- Background Floral Corner Elements -->
+    <div class="fixed -top-12 -left-12 opacity-20 md:opacity-30 pointer-events-none z-0">
+        <svg width="250" height="250" viewBox="0 0 200 200" fill="#6A1B29">
+            <path d="M40,20 C80,20 120,60 120,100 C120,140 80,180 40,180 C20,180 0,160 0,140 C0,100 40,20 40,20 Z" opacity="0.3"/>
+            <circle cx="60" cy="60" r="30" fill="#D4AF37"/>
+            <circle cx="100" cy="100" r="15" fill="#6A1B29"/>
+        </svg>
+    </div>
+    <div class="fixed -bottom-12 -right-12 opacity-20 md:opacity-30 pointer-events-none z-0 rotate-180">
+        <svg width="250" height="250" viewBox="0 0 200 200" fill="#6A1B29">
+            <path d="M40,20 C80,20 120,60 120,100 C120,140 80,180 40,180 C20,180 0,160 0,140 C0,100 40,20 40,20 Z" opacity="0.3"/>
+            <circle cx="60" cy="60" r="30" fill="#D4AF37"/>
+            <circle cx="100" cy="100" r="15" fill="#6A1B29"/>
+        </svg>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed top-5 right-5 transform translate-x-full transition-transform duration-300 z-50 bg-maroon text-goldLight px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-gold">
+        <i class="fa-solid fa-circle-check text-gold"></i>
+        <span id="toast-message" class="text-sm font-medium">Notification</span>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-4xl mx-auto px-4 py-8 md:py-12 relative z-10">
+
+        <!-- Main Invitation Card -->
+        <div class="royal-card rounded-3xl p-6 sm:p-10 md:p-14 text-center relative gold-border-corner transition-all">
+            
+            <!-- Floral Top Accent SVG -->
+            <div class="flex justify-center mb-6">
+                <svg class="w-48 sm:w-64 h-auto text-gold" viewBox="0 0 300 40" fill="currentColor">
+                    <path d="M150,0 C170,15 200,20 230,10 C210,25 210,35 240,40 C210,38 180,30 150,15 C120,30 90,38 60,40 C90,35 90,25 70,10 C100,20 130,15 150,0 Z"/>
+                    <circle cx="150" cy="20" r="6" fill="#6A1B29"/>
+                </svg>
+            </div>
+
+            <!-- Bismillah & Quranic Verse Calligraphy -->
+            <div class="space-y-4 mb-8">
+                <p class="font-arabic text-2xl sm:text-3xl md:text-4xl text-maroon font-bold leading-relaxed tracking-wide">
+                    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                </p>
+                <div class="inline-block px-4 py-1 border-y border-gold/40 my-2">
+                    <p class="font-arabic text-xl sm:text-2xl md:text-3xl text-goldDark font-semibold leading-relaxed">
+                        وَقُلْ رَبِّ أَنْزِلْنِي مُنْزَلًا مُبَارَكًا
+                    </p>
+                </div>
+                <p class="text-xs sm:text-sm text-gray-600 italic">"My Lord, enable me to land at a blessed landing place..." (Quran 23:29)</p>
+            </div>
+
+            <!-- Title -->
+            <div class="my-8">
+                <span class="uppercase tracking-[0.3em] text-xs font-bold text-goldDark block mb-2">You Are Cordially Invited To The</span>
+                <h1 class="font-heading text-3xl sm:text-5xl md:text-6xl font-extrabold text-maroon tracking-wide mb-3">
+                    House Warming
+                </h1>
+                <h2 class="font-cursive text-3xl sm:text-4xl text-gold font-bold">
+                    Ceremony & Reception
+                </h2>
+            </div>
+
+            <!-- Message Body -->
+            <div class="max-w-2xl mx-auto my-8 space-y-4 text-gray-700 text-base sm:text-lg leading-relaxed">
+                <p>
+                    We are delighted to invite you and your family to the reception arranged at our new home.
+                </p>
+                <p class="italic text-maroon font-medium">
+                    Your gracious presence and blessings will make this occasion truly special for us.
+                </p>
+            </div>
+
+            <!-- Hosts Section -->
+            <div class="my-10 p-6 rounded-2xl bg-creamDark/60 border border-gold/30 inline-block w-full max-w-lg">
+                <span class="text-xs uppercase tracking-widest text-gray-500 font-semibold block mb-2">With Love & Warm Regards</span>
+                <h3 class="font-heading text-xl sm:text-2xl text-maroon font-bold">
+                    Haris Palathingal Valiya Peadiyekkal
+                </h3>
+                <span class="text-gold font-bold my-1 block text-lg">&</span>
+                <h3 class="font-heading text-xl sm:text-2xl text-maroon font-bold">
+                    Shameela A K
+                </h3>
+            </div>
+
+            <!-- Event Date & Time Display -->
+            <div class="my-10 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                <div class="p-5 rounded-2xl bg-white border-2 border-gold/40 shadow-sm flex items-center justify-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-maroon/10 text-maroon flex items-center justify-center text-xl">
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-bold text-goldDark uppercase tracking-wider block">Date</span>
+                        <span class="font-heading text-lg font-bold text-gray-800">Sunday, 24 May 2026</span>
+                    </div>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-white border-2 border-gold/40 shadow-sm flex items-center justify-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-maroon/10 text-maroon flex items-center justify-center text-xl">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-bold text-goldDark uppercase tracking-wider block">Time</span>
+                        <span class="font-heading text-lg font-bold text-gray-800">11:00 AM to 2:00 PM</span>
+                        <span class="text-xs text-gray-500 block">(12:00 PM Onwards)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="my-10">
+                <h4 class="font-heading text-sm uppercase tracking-widest text-maroon mb-4 font-bold">Countdown to Event</h4>
+                <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto">
+                    <div class="p-3 sm:p-4 rounded-2xl bg-maroon text-goldLight shadow-md">
+                        <span id="days" class="font-heading text-2xl sm:text-4xl font-extrabold block">00</span>
+                        <span class="text-[10px] sm:text-xs uppercase tracking-wider opacity-80">Days</span>
+                    </div>
+                    <div class="p-3 sm:p-4 rounded-2xl bg-maroon text-goldLight shadow-md">
+                        <span id="hours" class="font-heading text-2xl sm:text-4xl font-extrabold block">00</span>
+                        <span class="text-[10px] sm:text-xs uppercase tracking-wider opacity-80">Hours</span>
+                    </div>
+                    <div class="p-3 sm:p-4 rounded-2xl bg-maroon text-goldLight shadow-md">
+                        <span id="minutes" class="font-heading text-2xl sm:text-4xl font-extrabold block">00</span>
+                        <span class="text-[10px] sm:text-xs uppercase tracking-wider opacity-80">Mins</span>
+                    </div>
+                    <div class="p-3 sm:p-4 rounded-2xl bg-maroon text-goldLight shadow-md">
+                        <span id="seconds" class="font-heading text-2xl sm:text-4xl font-extrabold block">00</span>
+                        <span class="text-[10px] sm:text-xs uppercase tracking-wider opacity-80">Secs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons: Calendar & Celebrate -->
+            <div class="flex flex-wrap items-center justify-center gap-4 my-8">
+                <button onclick="addToCalendar()" class="px-6 py-3 rounded-full bg-gold hover:bg-goldDark text-maroon font-bold text-sm shadow-md transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    Add to Google Calendar
+                </button>
+                <button onclick="triggerConfetti()" class="px-6 py-3 rounded-full bg-maroon hover:bg-maroonDark text-goldLight font-bold text-sm shadow-md transition-all flex items-center gap-2 pulse-gold-btn transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Send Blessings ✨
+                </button>
+            </div>
+
+            <!-- Venue & Location Section -->
+            <div class="mt-12 pt-10 border-t-2 border-gold/30">
+                <h3 class="font-heading text-2xl font-bold text-maroon mb-6 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-location-dot text-gold"></i>
+                    Event Venue Location
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left items-stretch">
+                    <!-- Address Box -->
+                    <div class="md:col-span-2 p-6 rounded-2xl bg-white border border-gold/40 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-goldDark uppercase tracking-wider block mb-2">Residence Address</span>
+                            <h4 class="font-heading text-xl font-bold text-maroon mb-2">Palathingal Valiya Peadiyekkal</h4>
+                            <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                                Palathingal Keeranallur,<br>
+                                New Cut, Kerala
+                            </p>
+                        </div>
+                        <div class="mt-6 flex flex-wrap gap-3">
+                            <a href="https://goo.gl/maps/QgFw4CRXjhp2HutS6" target="_blank" class="px-5 py-2.5 rounded-xl bg-maroon text-goldLight font-semibold text-sm hover:bg-maroonDark transition flex items-center gap-2">
+                                <i class="fa-solid fa-diamond-turn-right"></i>
+                                Get Directions
+                            </a>
+                            <button onclick="copyLocationLink()" class="px-4 py-2.5 rounded-xl border border-gold text-maroon hover:bg-gold/10 font-semibold text-sm transition flex items-center gap-2">
+                                <i class="fa-regular fa-copy"></i>
+                                Copy Link
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- QR Code Card -->
+                    <div class="p-6 rounded-2xl bg-white border border-gold/40 shadow-sm flex flex-col items-center justify-center text-center">
+                        <span class="text-xs font-bold text-goldDark uppercase tracking-wider mb-3">Scan for Location</span>
+                        <!-- Generated QR Code Image using Google API / QuickChart -->
+                        <div class="p-2 bg-cream rounded-xl border border-gold/30 shadow-inner">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://goo.gl/maps/QgFw4CRXjhp2HutS6" 
+                                 alt="Location QR Code" 
+                                 class="w-32 h-32 object-contain rounded-lg"
+                                 onerror="this.src='https://placehold.co/140x140/6A1B29/FCF9F2?text=Location+QR'">
+                        </div>
+                        <span class="text-[11px] text-gray-500 mt-2">Scan with smartphone camera</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RSVP Section -->
+            <div id="rsvp-section" class="mt-12 pt-10 border-t-2 border-gold/30">
+                <div class="max-w-xl mx-auto bg-creamDark/50 p-6 sm:p-8 rounded-2xl border border-gold/40">
+                    <h3 class="font-heading text-2xl font-bold text-maroon mb-2">Confirm Your Attendance</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-6">Please let us know if you will join us to help us prepare better!</p>
+
+                    <form id="rsvp-form" onsubmit="handleRSVP(event)" class="space-y-4 text-left">
+                        <div>
+                            <label class="block text-xs font-bold text-maroon uppercase tracking-wider mb-1">Your Full Name *</label>
+                            <input type="text" id="guest-name" required placeholder="e.g. Muhammed & Family" 
+                                class="w-full px-4 py-3 rounded-xl border border-gold/50 focus:outline-none focus:ring-2 focus:ring-maroon bg-white text-sm">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-maroon uppercase tracking-wider mb-1">No. of Guests Attending</label>
+                                <select id="guest-count" class="w-full px-4 py-3 rounded-xl border border-gold/50 focus:outline-none focus:ring-2 focus:ring-maroon bg-white text-sm">
+                                    <option value="1 Person">1 Person</option>
+                                    <option value="2 People">2 People</option>
+                                    <option value="3-4 People" selected>3-4 People</option>
+                                    <option value="5+ Family Members">5+ Family Members</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-maroon uppercase tracking-wider mb-1">Attendance Status</label>
+                                <select id="guest-status" class="w-full px-4 py-3 rounded-xl border border-gold/50 focus:outline-none focus:ring-2 focus:ring-maroon bg-white text-sm">
+                                    <option value="Joyfully Attending">Joyfully Attending</option>
+                                    <option value="Regretfully Declining">Regretfully Declining</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-maroon uppercase tracking-wider mb-1">Warm Wishes / Note (Optional)</label>
+                            <textarea id="guest-notes" rows="2" placeholder="Congratulations on your new home!" 
+                                class="w-full px-4 py-3 rounded-xl border border-gold/50 focus:outline-none focus:ring-2 focus:ring-maroon bg-white text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-maroon hover:bg-maroonDark text-goldLight font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            Send RSVP via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Direct Share Buttons -->
+            <div class="mt-12 pt-8 border-t border-gold/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+                <span>Share this invitation with family & friends:</span>
+                <div class="flex items-center gap-3">
+                    <button onclick="shareOnWhatsApp()" class="p-2.5 rounded-full bg-emerald-600 text-white hover:bg-emerald-700 transition" title="Share via WhatsApp">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                    </button>
+                    <button onclick="copyInvitationLink()" class="p-2.5 rounded-full bg-gold text-maroon hover:bg-goldDark transition" title="Copy Invitation Link">
+                        <i class="fa-solid fa-link text-base"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Footer Graphic -->
+            <div class="flex justify-center mt-10">
+                <svg class="w-32 h-auto text-gold opacity-70" viewBox="0 0 200 30" fill="currentColor">
+                    <path d="M100,0 C120,10 140,15 160,5 C145,20 125,25 100,30 C75,25 55,20 40,5 C60,15 80,10 100,0 Z"/>
+                </svg>
+            </div>
+
+        </div>
+
+        <!-- Footer Text -->
+        <p class="text-center text-xs text-gray-500 mt-8">
+            Designed for Haris & Shameela's House Warming Ceremony • 2026
+        </p>
+
+    </div>
+
+    <script>
+        // Target Date: 24 May 2026 11:00 AM
+        const eventDate = new Date('May 24, 2026 11:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Toast Notification Function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.innerText = message;
+            toast.classList.remove('translate-x-full');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+            }, 3500);
+        }
+
+        // Confetti Effect
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#D4AF37', '#6A1B29', '#F3E5AB']
+                });
+            }
+            showToast("Thank you for your blessings! ✨");
+        }
+
+        // Add To Google Calendar Link Generator
+        function addToCalendar() {
+            const title = encodeURIComponent("House Warming Ceremony - Haris & Shameela");
+            const details = encodeURIComponent("We are delighted to invite you and your family to the house warming reception arranged at our new home.");
+            const location = encodeURIComponent("Palathingal Valiya Peadiyekkal, Palathingal Keeranallur, New Cut");
+            
+            // ISO Date Strings: 2026-05-24T11:00:00Z / 2026-05-24T14:00:00Z
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260524T053000Z/20260524T083000Z&details=${details}&location=${location}`;
+            window.open(calendarUrl, '_blank');
+        }
+
+        // Copy Location Link
+        function copyLocationLink() {
+            const link = "https://goo.gl/maps/QgFw4CRXjhp2HutS6";
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = link;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            showToast("Location link copied to clipboard!");
+        }
+
+        // Copy Invitation Link
+        function copyInvitationLink() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            showToast("Invitation page link copied!");
+        }
+
+        // Share on WhatsApp
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent(`You're cordially invited to the House Warming Ceremony of Haris & Shameela on Sunday, 24 May 2026!\n\nView complete invitation details here: ${window.location.href}`);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        // RSVP Form Submission via WhatsApp
+        function handleRSVP(event) {
+            event.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const count = document.getElementById('guest-count').value;
+            const status = document.getElementById('guest-status').value;
+            const notes = document.getElementById('guest-notes').value;
+
+            let message = `*RSVP for House Warming Ceremony*\n`;
+            message += `-------------------------\n`;
+            message += `*Name:* ${name}\n`;
+            message += `*Status:* ${status}\n`;
+            message += `*Guests:* ${count}\n`;
+            if (notes.trim() !== '') {
+                message += `*Message:* ${notes}\n`;
+            }
+
+            const encodedMessage = encodeURIComponent(message);
+            // Replace with host phone number if needed
+            window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
+            showToast("Redirecting to WhatsApp to send RSVP...");
+        }
+
+        // Trigger light confetti on page load
+        window.onload = function() {
+            setTimeout(triggerConfetti, 800);
+        };
+    </script>
+</body>
+</html>
