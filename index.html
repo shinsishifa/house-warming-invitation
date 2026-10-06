@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Warming Invitation | Haris & Shameela</title>
+    
+    <!-- Meta tags for social media sharing cards -->
+    <meta property="og:title" content="House Warming Ceremony - Haris & Shameela">
+    <meta property="og:description" content="We invite you and your family to join us for our House Warming Ceremony on Sunday, 24 May 2026.">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FDF7E7',
+                            200: '#FAF0CE',
+                            300: '#F4DE9C',
+                            400: '#E8C56A',
+                            500: '#D4AF37', // Classic Gold
+                            600: '#AA820A',
+                            700: '#805F03',
+                        },
+                        maroon: {
+                            50: '#FAF0F0',
+                            100: '#F4DCDD',
+                            500: '#7A1C1C',
+                            800: '#4A0E0E', // Deep Elegant Maroon
+                            900: '#2D0808',
+                        },
+                        cream: '#FDFBF7',
+                    },
+                    fontFamily: {
+                        arabic: ['Amiri', 'serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        script: ['Great Vibes', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* Custom Decorative Islamic/Floral Border Styling */
+        .ornate-border {
+            border: 2px solid #D4AF37;
+            position: relative;
+        }
+        .ornate-border::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid #7A1C1C;
+            pointer-events: none;
+        }
+        
+        /* Glassmorphism effects */
+        .glass-card {
+            background: rgba(253, 251, 247, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Subtle shimmering background gradient */
+        .bg-shimmer {
+            background: linear-gradient(135deg, #FDFBF7 0%, #F5EFEB 50%, #FAF0CE 100%);
+        }
+
+        /* Gold text gradient */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #AA820A 0%, #D4AF37 50%, #805F03 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Subtle float animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-shimmer text-gray-800 font-sans min-h-screen relative flex flex-col justify-between selection:bg-gold-300 selection:text-maroon-900">
+
+    <!-- Audio Element (Royal Soft Ambient Music) -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-peaceful-garden-523.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Top Music & Action Bar -->
+    <div class="fixed top-4 right-4 z-50 flex items-center space-x-2">
+        <button id="musicToggleBtn" onclick="toggleAudio()" class="bg-maroon-800 hover:bg-maroon-900 text-gold-300 p-3 rounded-full shadow-lg border border-gold-400/50 transition-all transform hover:scale-110 flex items-center justify-center w-11 h-11" title="Toggle Music">
+            <i id="musicIcon" class="fas fa-music text-base"></i>
+        </button>
+        <button onclick="triggerConfetti()" class="bg-gold-500 hover:bg-gold-600 text-maroon-900 p-3 rounded-full shadow-lg border border-gold-300 transition-all transform hover:scale-110 flex items-center justify-center w-11 h-11" title="Celebrate!">
+            <i class="fas fa-sparkles text-base"></i>
+        </button>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container mx-auto px-4 py-8 md:py-12 max-w-4xl flex-grow">
+        
+        <div class="glass-card rounded-2xl shadow-2xl p-6 sm:p-10 md:p-12 ornate-border relative overflow-hidden transition-all duration-500 hover:shadow-gold-500/10">
+            
+            <!-- Corner Decorative Elements -->
+            <div class="absolute top-2 left-2 text-gold-500 opacity-60 pointer-events-none">
+                <svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M0,0 L100,0 L100,10 L10,10 L10,100 L0,100 Z"/>
+                    <circle cx="25" cy="25" r="8"/>
+                </svg>
+            </div>
+            <div class="absolute top-2 right-2 text-gold-500 opacity-60 transform rotate-90 pointer-events-none">
+                <svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M0,0 L100,0 L100,10 L10,10 L10,100 L0,100 Z"/>
+                    <circle cx="25" cy="25" r="8"/>
+                </svg>
+            </div>
+            <div class="absolute bottom-2 left-2 text-gold-500 opacity-60 transform -rotate-90 pointer-events-none">
+                <svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M0,0 L100,0 L100,10 L10,10 L10,100 L0,100 Z"/>
+                    <circle cx="25" cy="25" r="8"/>
+                </svg>
+            </div>
+            <div class="absolute bottom-2 right-2 text-gold-500 opacity-60 transform rotate-180 pointer-events-none">
+                <svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M0,0 L100,0 L100,10 L10,10 L10,100 L0,100 Z"/>
+                    <circle cx="25" cy="25" r="8"/>
+                </svg>
+            </div>
+
+            <header class="text-center space-y-4 mb-8">
+                <!-- Bismillah -->
+                <p class="font-arabic text-2xl sm:text-3xl md:text-4xl text-maroon-800 leading-relaxed font-bold tracking-wide">
+                    بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
+                </p>
+                
+                <!-- Quranic Verse -->
+                <div class="py-2 px-4 inline-block rounded-xl bg-gold-100/50 border border-gold-300/40">
+                    <p class="font-arabic text-xl sm:text-2xl md:text-3xl text-gold-700 leading-relaxed">
+                        وَقُلْ رَبِّ أَنْزِلْنِي مُنْزَلًا مُبَارَكًا
+                    </p>
+                </div>
+            </header>
+
+            <div class="text-center my-6">
+                <div class="inline-flex items-center justify-center space-x-3 mb-2">
+                    <span class="h-px w-8 sm:w-16 bg-gold-500"></span>
+                    <i class="fas fa-home text-gold-600 text-lg"></i>
+                    <span class="h-px w-8 sm:w-16 bg-gold-500"></span>
+                </div>
+                <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-maroon-800 tracking-wider uppercase">
+                    House Warming Ceremony
+                </h1>
+                <p class="font-script text-2xl sm:text-3xl text-gold-600 mt-1">Reception & Blessings</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto text-center my-8 px-2">
+                <p class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed font-serif italic">
+                    "We are delighted to invite you and your family to the reception arranged at our new home. Your gracious presence and blessings will make this occasion truly special for us."
+                </p>
+            </div>
+
+            <div class="text-center my-8 bg-maroon-50/60 p-6 rounded-2xl border border-gold-300/50">
+                <span class="text-xs uppercase tracking-widest text-gold-700 font-semibold block mb-2">With Love & Warm Regards</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-maroon-800">
+                    Haris Palathingal Valiya Peediyekkal
+                </h2>
+                <p class="font-script text-2xl text-gold-600 my-1">&</p>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-maroon-800">
+                    Shameela A K
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                
+                <!-- Date & Time Box -->
+                <div class="bg-cream p-6 rounded-xl border border-gold-300 shadow-sm flex flex-col justify-center items-center text-center">
+                    <div class="w-12 h-12 bg-maroon-800 text-gold-300 rounded-full flex items-center justify-center mb-3 text-xl shadow">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-1">Date & Timing</span>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-maroon-800">Sunday, 24 May 2026</h3>
+                    <p class="text-gold-700 font-medium text-sm sm:text-base mt-2">
+                        <i class="far fa-clock mr-1"></i> 11:00 AM to 2:00 PM
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">(Reception from 12:00 PM onwards)</p>
+                </div>
+
+                <!-- Venue Location Box -->
+                <div class="bg-cream p-6 rounded-xl border border-gold-300 shadow-sm flex flex-col justify-center items-center text-center">
+                    <div class="w-12 h-12 bg-maroon-800 text-gold-300 rounded-full flex items-center justify-center mb-3 text-xl shadow">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-1">Venue Address</span>
+                    <h3 class="font-serif text-lg font-bold text-maroon-800">Palathingal Valiya Peediyekkal</h3>
+                    <p class="text-gray-600 text-sm mt-1">Palathingal Keeranallur, New Cut</p>
+                    
+                    <a href="https://goo.gl/maps/QgFw4CRXjhp2HutS6" target="_blank" rel="noopener noreferrer" 
+                       class="mt-4 inline-flex items-center px-4 py-2 bg-gold-500 hover:bg-gold-600 text-maroon-900 rounded-lg text-sm font-semibold transition-colors shadow">
+                        <i class="fas fa-directions mr-2"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+
+            <div class="my-10 bg-maroon-800 text-white p-6 rounded-2xl shadow-xl text-center relative overflow-hidden">
+                <div class="absolute -right-8 -bottom-8 opacity-10 text-9xl pointer-events-none">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h4 class="text-xs sm:text-sm uppercase tracking-widest text-gold-300 font-semibold mb-4">Countdown to Celebration</h4>
+                
+                <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto">
+                    <div class="bg-maroon-900/80 p-3 rounded-xl border border-gold-500/30">
+                        <span id="days" class="text-2xl sm:text-4xl font-bold font-serif text-gold-300">00</span>
+                        <span class="block text-[10px] sm:text-xs text-gray-300 uppercase mt-1">Days</span>
+                    </div>
+                    <div class="bg-maroon-900/80 p-3 rounded-xl border border-gold-500/30">
+                        <span id="hours" class="text-2xl sm:text-4xl font-bold font-serif text-gold-300">00</span>
+                        <span class="block text-[10px] sm:text-xs text-gray-300 uppercase mt-1">Hours</span>
+                    </div>
+                    <div class="bg-maroon-900/80 p-3 rounded-xl border border-gold-500/30">
+                        <span id="minutes" class="text-2xl sm:text-4xl font-bold font-serif text-gold-300">00</span>
+                        <span class="block text-[10px] sm:text-xs text-gray-300 uppercase mt-1">Mins</span>
+                    </div>
+                    <div class="bg-maroon-900/80 p-3 rounded-xl border border-gold-500/30">
+                        <span id="seconds" class="text-2xl sm:text-4xl font-bold font-serif text-gold-300">00</span>
+                        <span class="block text-[10px] sm:text-xs text-gray-300 uppercase mt-1">Secs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+                <!-- RSVP WhatsApp Button -->
+                <button onclick="sendRSVP()" class="w-full sm:w-auto px-6 py-3.5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl shadow-lg transition-transform transform active:scale-95 flex items-center justify-center">
+                    <i class="fab fa-whatsapp text-xl mr-2"></i> Confirm RSVP on WhatsApp
+                </button>
+
+                <!-- Add to Google Calendar -->
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=House+Warming+Ceremony+-+Haris+%26+Shameela&dates=20260524T053000Z/20260524T083000Z&details=House+Warming+Reception+arranged+at+our+new+home.&location=Palathingal+Valiya+Peediyekkal,+Palathingal+Keeranallur,+New+Cut" 
+                   target="_blank" rel="noopener noreferrer"
+                   class="w-full sm:w-auto px-6 py-3.5 bg-maroon-800 hover:bg-maroon-900 text-gold-300 font-semibold rounded-xl shadow-lg transition-transform transform active:scale-95 flex items-center justify-center border border-gold-400/30">
+                    <i class="far fa-calendar-plus text-lg mr-2"></i> Add to Calendar
+                </a>
+
+                <!-- Share Invitation Button -->
+                <button onclick="shareInvitation()" class="w-full sm:w-auto px-6 py-3.5 bg-gold-500 hover:bg-gold-600 text-maroon-900 font-semibold rounded-xl shadow-lg transition-transform transform active:scale-95 flex items-center justify-center">
+                    <i class="fas fa-share-alt text-lg mr-2"></i> Share Invitation
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-6 text-xs text-gray-500">
+        <p>Warmly expecting your gracious presence and blessings.</p>
+        <p class="mt-1">2026 House Warming Ceremony • Haris & Shameela</p>
+    </footer>
+
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-maroon-900 text-gold-300 px-6 py-3 rounded-full shadow-2xl text-sm font-medium transition-opacity duration-300 opacity-0 pointer-events-none z-50 flex items-center space-x-2 border border-gold-400">
+        <i class="fas fa-check-circle text-green-400"></i>
+        <span id="toastMsg">Invitation link copied!</span>
+    </div>
+
+    <script>
+        // 1. Confetti Animation Trigger
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 80,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#D4AF37', '#7A1C1C', '#E8C56A']
+                });
+            }
+        }
+
+        // Trigger confetti automatically on page load
+        window.addEventListener('load', () => {
+            setTimeout(triggerConfetti, 600);
+        });
+
+        // 2. Music Toggle Handler
+        const bgMusic = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.className = "fas fa-music text-base";
+            } else {
+                bgMusic.play().then(() => {
+                    musicIcon.className = "fas fa-pause text-base";
+                }).catch(e => {
+                    console.log("Audio play blocked by browser interaction policy.");
+                });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // 3. Countdown Timer Handler
+        const eventDate = new Date('May 24, 2026 11:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 4. RSVP WhatsApp Handler
+        function sendRSVP() {
+            const message = encodeURIComponent("Warm greetings! I am delighted to confirm that my family and I will attend the House Warming Ceremony on 24 May 2026. Looking forward to celebrating with you!");
+            window.open(`https://wa.me/?text=${message}`, '_blank');
+        }
+
+        // 5. Share Invitation & Toast Notification
+        function shareInvitation() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'House Warming Invitation',
+                    text: 'Join us for our House Warming Ceremony on Sunday, 24 May 2026!',
+                    url: window.location.href,
+                }).catch(() => {});
+            } else {
+                // Fallback copy to clipboard
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = window.location.href;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                showToast("Invitation link copied to clipboard!");
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
